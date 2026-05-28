@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header
+        icon="🎯"
+        groupName="테스트 그룹"
+        date="2026.05.28 ~ 2026.06.04"
+      />
+      <div style={{display:'flex'}}>
+        <div style={{border:'1px solid black', width:'50%'}}>왼쪽 캘린더</div>
+        <div style={{border:'1px solid black', width:'50%'}}>오른쪽 캘린더</div>
+      </div>
     </div>
   );
 }
