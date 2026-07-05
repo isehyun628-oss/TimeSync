@@ -6,11 +6,13 @@ function Header(props) {
                 <span>{props.icon}</span>
                 <div>
                     <div>{props.groupName}</div>
-                    <div>{props.date}</div>
+                    <div>
+                        {props.date}
+                        <button>🔗</button>
+                    </div>
                 </div>
             </div>
             <div>
-                <button>🔗</button>
                 <button>설정</button>
             </div>
         </div>
