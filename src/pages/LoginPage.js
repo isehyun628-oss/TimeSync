@@ -16,8 +16,12 @@ function LoginPage() {
                 Google 계정으로 로그인
             </button>
 
+            <button className="guest-btn">
+                게스트로 로그인
+            </button>
+
             <button className="help-btn">
-                도움말
+                i
             </button>
 
         </div>
