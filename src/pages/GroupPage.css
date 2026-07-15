@@ -1,0 +1,204 @@
+/* 모든 요소의 크기 계산을 편하게 만듦 */
+* {
+  box-sizing: border-box;
+}
+
+/* 페이지 전체 */
+.group-page {
+  min-height: 100vh;
+  padding: 30px 40px;
+  background-color: white;
+  color: #222;
+}
+
+/* 상단 프로필 + 메뉴 */
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* 프로필 영역 */
+.profile-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #333;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 메뉴 버튼 */
+.menu-button {
+  border: none;
+  background-color: transparent;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+/* 그룹 목록 중심 영역 */
+.group-main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 제목, 검색창, 그룹 생성 버튼 */
+.group-top-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.group-top-area h1 {
+  margin: 0;
+  font-size: 24px;
+  white-space: nowrap;
+}
+
+/* 검색창 */
+.group-search {
+  width: 260px;
+  height: 38px;
+  padding: 0 12px;
+
+  border: 2px solid #333;
+  border-radius: 4px;
+
+  font-size: 15px;
+}
+
+.no-group-message {
+  padding: 40px 0;
+  text-align: center;
+  color: #777;
+}
+
+/* 그룹 생성/참가 영역 */
+.group-create-area {
+  position: relative;
+  margin-left: auto;
+}
+
+.group-create-button {
+  height: 40px;
+  padding: 0 16px;
+
+  border: 2px solid #333;
+  background-color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 드롭다운 */
+.group-dropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+
+  width: 180px;
+  border: 2px solid #333;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 10;
+}
+
+.group-dropdown button {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.group-dropdown button:last-child {
+  border-bottom: none;
+}
+
+.group-dropdown button:hover {
+  background-color: #f2f2f2;
+}
+
+/* 그룹 목록 */
+.group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 그룹 카드 */
+.group-card {
+  min-height: 90px;
+  padding: 14px 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  border: 2px solid #333;
+  background-color: white;
+}
+
+/* 그룹 아이콘 */
+.group-icon {
+  width: 70px;
+  height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #333;
+  border-radius: 10px;
+
+  font-size: 28px;
+}
+
+/* 그룹 정보 */
+.group-info {
+  flex: 1;
+}
+
+.group-info h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.group-info p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* 나가기 버튼 */
+.leave-button {
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  background-color: transparent;
+
+  font-size: 30px;
+  cursor: pointer;
+}

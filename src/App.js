@@ -1,34 +1,8 @@
-/*
-import Header from './components/Header';
+// 화면 테스트 (삭제해도됨)
+import GroupPage from "./pages/GroupPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-*/
-
-import LoginPage from "./pages/LoginPage";
-
-function App() {
-  return <LoginPage />;
+  return <GroupPage />;
 }
 
 export default App;
