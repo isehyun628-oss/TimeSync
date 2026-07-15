@@ -44,8 +44,12 @@ function CreateGroupPage() {
 
         alert("그룹이 생성되었습니다.");
 
-        navigate("/");
-        // 그룹 목록 페이지로 이동
+        navigate("/groups/create/success", {
+            state: {
+                groupName: groupName,
+            },
+        });
+        // 완료 페이지로 이동
     };
 
     return (

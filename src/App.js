@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import GroupPage from "./pages/GroupPage";
 import CreateGroupPage from "./pages/CreateGroupPage";
+import CreateGroupSuccessPage from "./pages/CreateGroupSuccessPage";
 // 페이지 불러오기
 
 function App() {
@@ -17,6 +18,11 @@ function App() {
         <Route
           path="/groups/create"
           element={<CreateGroupPage />}
+        />
+
+        <Route
+          path="/groups/create/success"
+          element={<CreateGroupSuccessPage />}
         />
       </Routes>
     </BrowserRouter>
