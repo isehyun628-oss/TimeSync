@@ -1,0 +1,35 @@
+/* 헤더 전체를 감싸는 컨테이너 */
+.header-container {
+    display: flex;  /* 안의 요소들을 가로로 나열 */
+    align-items: center;    /* 세로 기준 가운데 정렬 */
+    justify-content: space-between; /* 왼쪽 묶음과 설정 버튼을 양 끝으로 배치 */
+    padding: 10px;    /* 테두리 안쪽 여백 */
+}
+
+/* 왼쪽 묶음 (뒤로가기 버튼 + 아이콘 + 그룹명/날짜 + 날짜/시간 텍스트 + 공유 버튼) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;   /* 요소들 사이 간격 */
+}
+
+/* 날짜/시간 텍스트와 공유 버튼을 감싸는 컨테이너 */
+.header-date-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 날짜/시간 텍스트 */
+.header-date {
+    font-size: 13px;
+    color: gray;
+}
+
+/* 뒤로가기, 공유, 설정 버튼 공통 스타일 */
+.header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;    /* 마우스를 버튼 위에 올리면 손가락 모양 커서로 바뀜 */
+    font-size: 16px;
+}
