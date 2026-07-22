@@ -1,8 +1,20 @@
 /* Header.css 파일을 불러와서 디자인 적용 */
 import './Header.css';
 
+/* useState: 팝업 열림/닫힘 상태를 저장하기 위해 불러옴 */
+import { useState } from 'react';
+
+/* 필요한 컴포넌트 불러오기 */
+import SharePopup from './SharePopup';
+
+
 /* props를 받는 Header 컴포넌트 */
 function Header(props) {
+
+    /* shareOpen: 공유 팝업이 열렸는지(true) 닫혔는지(false) 저장하는 상태 */
+    /* 초기값은 false(닫힘) */
+    const [shareOpen, setShareOpen] = useState(false);
+
     return (
 
         /* 헤더 전체 컨테이너 */
@@ -27,7 +39,7 @@ function Header(props) {
                         {/* 날짜/시간 텍스트 */}
                         <span className="header-date">{props.date}</span>
                         {/* 공유 버튼: 누르면 초대링크/초대코드 팝업 표시 (기능 나중에 추가) */}
-                        <button className="header-btn">🔗</button>
+                        <button className="header-btn" onClick={() => { setShareOpen(true) }}>🔗</button>
                     </div>
                 </div>
             </div>
@@ -37,6 +49,19 @@ function Header(props) {
                 {/* 설정 버튼: 누르면 설정 팝업 표시 (기능 나중에 추가) */}
                 <button className="header-btn">설정</button>
             </div>
+
+            {/* shareOpen이 true일 때만 SharePopup 표시 */}
+            {/* onClose: ✕ 버튼 누르면 shareOpen을 false로 바꿔서 팝업 닫기 */}
+            {shareOpen && (
+                <div style={{
+                    position: 'absolute',
+                    top: '100%',    /* 헤더 파로 아래 */
+                    left: '180px',  /* 공유버튼 위치에 맞게 조절 */
+                    xIndex: 100     /* 다른 요소 위에 표시 */
+                }}>
+                    <SharePopup onClose={() => { setShareOpen(false) }} />
+                </div>
+            )}
 
         </div>
     );

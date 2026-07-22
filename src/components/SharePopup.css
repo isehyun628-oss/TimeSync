@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%;    /* 행 전체 너비 차지 */
 }
 
 /* 초대코드/초대링크 텍스트 공통 스타일 */
@@ -31,6 +32,9 @@
     font-size: 13px;
     color: #6d28d9;     /* 진한 보라 */
     flex: 1;    /* 텍스트가 남은 공간 차지 (복사 버튼을 오른쪽 끝으로 밀기) */
+    white-space: nowrap;        /* 줄바꿈 없이 한 줄로 */
+    overflow: hidden;           /* 넘친 텍스트 숨김 */
+    text-overflow: ellipsis;    /* 넘치면 ...으로 표시 */
 }
 
 /* 복사 버튼 */
@@ -42,4 +46,5 @@
     cursor: pointer;
     font-size: 13px;
     padding: 4px 8px;
+    flex-shrink: 0;     /* 복사 버튼은 줄어들지 않게 */
 }
