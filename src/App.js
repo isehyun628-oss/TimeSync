@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import GroupPage from "./pages/GroupPage";
 import CreateGroupPage from "./pages/CreateGroupPage";
 import CreateGroupSuccessPage from "./pages/CreateGroupSuccessPage";
+import GroupSchedulePage from "./pages/GroupSchedulePage";
 // 페이지 불러오기
 
 function App() {
@@ -23,6 +24,11 @@ function App() {
         <Route
           path="/groups/create/success"
           element={<CreateGroupSuccessPage />}
+        />
+
+        <Route
+          path="/groups/schedule"
+          element={<GroupSchedulePage />}
         />
       </Routes>
     </BrowserRouter>

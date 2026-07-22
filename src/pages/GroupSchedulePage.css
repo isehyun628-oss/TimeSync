@@ -1,0 +1,43 @@
+/* 페이지 전체 컨테이너 */
+.group-schedule-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f0ff;  /* 연보라 배경 */
+}
+
+/* 캘린더 두 개를 가로로 나열하는 컨테이너 */
+.calender-container {
+    display: flex;
+    flex: 1;
+    gap: 16px;
+    padding: 16px;
+}
+
+/* 왼쪽/오른쪽 캘린더 각각의 컨테이너 */
+.calender-wrapper {
+    flex: 1;    /* 두 캘린더가 공간을 똑같이 나눔 */
+    display: flex;
+    flex-direction: column; /* 상단과 본체를 세로로 나열 */
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid #c4b5fd;  /* 연보라 테두리 */
+    overflow: hidden;
+}
+
+/* 캘린더 상단: 제목 텍스트 + 버튼 */
+.calender-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #c4b5fd;   /* 연보라 구분선 */
+    color: #6d28d9; /* 진한 보라 */
+}
+
+/* 캘린더 본체: 타임블럭 들어갈 영역 */
+.calender-body {
+    flex: 1;
+    padding: 8px;
+}
