@@ -1,11 +1,21 @@
 /* 필요한 컴포넌트 불러오기 */
 import Header from '../components/Header';
+import ParticipantPopup from '../components/ParticipantPopup';
 
 /* GroupSchedulePage.css 파일을 불러와서 디자인 적용 */
 import './GroupSchedulePage.css';
 
+/* useState: 팝업 열림/닫힘 상태를 저장하기 위해 불러옴 */
+import { useState } from 'react';
+
+
 /* 그룹 일정 페이지 */
 function GroupSchedulePage() {
+
+    /* participantOpen: 참가자 보기 팝업이 열렸는지(true) 닫혔는지(false) 저장하는 상태 */
+    /* 초기값은 false(닫힘) */
+    const [participantOpen, setParticipantOpen] = useState(false);
+
     return (
         /* 페이지 전체 컨테이너 */
         <div className="group-schedule-container">
@@ -20,7 +30,7 @@ function GroupSchedulePage() {
             />
 
             {/* 캘린더 두 개를 가로로 나열하는 컨테이너 */}
-            <div className="calender-container">
+            <div className="calender-container" style={{position: 'relative'}}> {/* ParticipantPopup 위치 기준점 */}
 
                 {/* 왼쪽: 내 일정 캘린더 */}
                 <div className="calender-wrapper">
@@ -45,7 +55,7 @@ function GroupSchedulePage() {
                     <div className="calender-header">
                         <span>전체</span>
                         {/* 참가자 보기 버튼: 누르면 참가자 목록 팝업 (기능 나중에 추가) */}
-                        <button>참가자 보기</button>
+                        <button onClick={() => { setParticipantOpen(true) }}>참가자 보기</button>
                     </div>
 
                     {/* 캘린더 본체: 타임블럭이 들어갈 영역 (나중에 추가) */}
@@ -53,6 +63,18 @@ function GroupSchedulePage() {
                     </div>
 
                 </div>
+
+                {/* participantOpen이 true일 때만 ParticipantPopup 표시 */}
+                {participantOpen && (
+                    <div style={{
+                        position: 'absolute',   /* calender-container 기준으로 위치 고정 */
+                        top: '0px',    /* 헤더 파로 아래 */
+                        right: '0px',  /* 공유버튼 위치에 맞게 조절 */
+                        zIndex: 100
+                    }}>
+                        <ParticipantPopup onClose={() => { setParticipantOpen(false) }} />
+                    </div>
+                )}
 
             </div>
         </div>

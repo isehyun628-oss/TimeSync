@@ -18,7 +18,7 @@ function ParticipantPopup(props) {
         <div className="participant-popup-container">
 
             {/* 팝업 상단: 제목 텍스트 + 닫기 버튼 */}
-            <div className="parcitipant-popup-header">
+            <div className="participant-popup-header">
                 {/* 팝업 제목 */}
                 <span className="participant-popup-title">참가자 보기</span>
                 {/* 닫기 버튼: 누르면 팝업 닫기 */}
