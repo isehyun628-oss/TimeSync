@@ -1,0 +1,125 @@
+/* 팝업 전체 컨테이너 */
+.setting-popup-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f0ff;
+    border: 1px solid #c4b5fd;
+    border-radius: 12px;
+    width: 280px;
+    padding: 16px;
+    gap: 12px;
+}
+
+/* 팝업 상단: 닫기 버튼 */
+.setting-popup-header {
+    display:flex;
+    justify-content: flex-end;
+}
+
+/* 닫기 버튼 */
+.setting-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #6d28d9;
+}
+
+/* 팝업 본체: 입력 필드들을 세로로 나열 */
+.setting-popup-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 각 행: 라벨 + 입력 필드 */
+.setting-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 라벨 텍스트 */
+.setting-label {
+    font-size: 14px;
+    color: #6d28d9;
+    width: 50px;
+    flex-shrink: 0; /* 라벨이 줄어들지 않게 */
+}
+
+/* 입력 필드 */
+.setting-input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #c4b5fd;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;  /* 클릭 시 기본 파란 테두리 제거 */
+}
+
+/* 입력 필드 클릭 시 테두리 색상 변경 */
+.setting-input:focus {
+    border-color: #7c3aed;
+}
+
+/* 로그인 상태 표시 영역 */
+.setting-login-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #e9d5ff;
+}
+
+/* 로그인하기 버튼 */
+.setting-login-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #7c3aed;
+    font-size: 14px;
+    text-decoration: underline;     /* 밑줄 */ 
+}
+
+/* 하단 버튼들 */
+.setting-popup-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+/* 그룹 삭제하기 버튼 */
+.setting-delete-btn {
+    background: none;
+    border: 1px solid #ef4444;  /* 빨간 테두리 */
+    color: #ef4444; /* 빨간 텍스트 */
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* 그룹 나가기 버튼 */
+.setting-leave-btn {
+    background: none;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* 완료 버튼 */
+.setting-confirm-btn {
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+}

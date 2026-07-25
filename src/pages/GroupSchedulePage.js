@@ -1,6 +1,7 @@
 /* 필요한 컴포넌트 불러오기 */
 import Header from '../components/Header';
 import ParticipantPopup from '../components/ParticipantPopup';
+import SettingPopup from '../components/SettingPopup';
 
 /* GroupSchedulePage.css 파일을 불러와서 디자인 적용 */
 import './GroupSchedulePage.css';
@@ -16,6 +17,13 @@ function GroupSchedulePage() {
     /* 초기값은 false(닫힘) */
     const [participantOpen, setParticipantOpen] = useState(false);
 
+    /* settingOpen: 설정 팝업이 열렸는지(true) 닫혔는지(false) 저장 */
+    const [settingOpen, setSettingOpen] = useState(false);
+
+    /* isOwner: 생성자 버전(true) 사용자 버전 (false) */
+    /* 나중에 실제 데이터로 연결 예정 (현재는 하드코딩) */
+    const isOwner = true;
+
     return (
         /* 페이지 전체 컨테이너 */
         <div className="group-schedule-container">
@@ -27,8 +35,24 @@ function GroupSchedulePage() {
                 icon="⭐"
                 groupName="테스트 그룹"
                 date="2026.05.28 ~ 2026.06.04"
+                onSettingClick={() => {setSettingOpen(true) }}
             />
 
+            {/* 설정 팝업: settingOpen이 true일 때만 표시 */}
+            {settingOpen && (
+                <div style={{
+                    position: 'fixed',  /* 화면 기준으로 위치 고정 */
+                    top: '60px',        /* 헤더 바로 아래 */
+                    right: '10px',      /* 오른쪽 끝 */
+                    zIndex: 100         /* 다른 요소 위에 표시 */
+                }}>
+                    <SettingPopup
+                        onClose={() => { setSettingOpen(false) }}
+                        isOwner={isOwner}
+                    />
+                </div>
+            )}
+            
             {/* 캘린더 두 개를 가로로 나열하는 컨테이너 */}
             <div className="calender-container" style={{position: 'relative'}}> {/* ParticipantPopup 위치 기준점 */}
 
@@ -70,7 +94,7 @@ function GroupSchedulePage() {
                         position: 'absolute',   /* calender-container 기준으로 위치 고정 */
                         top: '0px',    /* 헤더 파로 아래 */
                         right: '0px',  /* 공유버튼 위치에 맞게 조절 */
-                        zIndex: 100
+                        zIndex: 100     /* 다른 요소 위에 표시 */
                     }}>
                         <ParticipantPopup onClose={() => { setParticipantOpen(false) }} />
                     </div>

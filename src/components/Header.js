@@ -47,7 +47,7 @@ function Header(props) {
             {/* 오른쪽 설정 버튼 */}
             <div>
                 {/* 설정 버튼: 누르면 설정 팝업 표시 (기능 나중에 추가) */}
-                <button className="header-btn">설정</button>
+                <button className="header-btn" onClick={props.onSettingClick}>설정</button>
             </div>
 
             {/* shareOpen이 true일 때만 SharePopup 표시 */}
