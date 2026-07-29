@@ -57,7 +57,7 @@ function Header(props) {
                     position: 'absolute',
                     top: '100%',    /* 헤더 파로 아래 */
                     left: '180px',  /* 공유버튼 위치에 맞게 조절 */
-                    xIndex: 100     /* 다른 요소 위에 표시 */
+                    zIndex: 100     /* 다른 요소 위에 표시 */
                 }}>
                     <SharePopup onClose={() => { setShareOpen(false) }} />
                 </div>
