@@ -62,14 +62,21 @@
 }
 
 .group-create-button {
+    min-width: 190px;
+    flex-shrink: 0;
     border-color: var(--timesync-primary);
     border-radius: 8px;
     background-color: var(--timesync-primary);
     color: white;
+    white-space: nowrap;
 }
 
 .group-create-button:hover {
     background-color: var(--timesync-primary-dark);
+}
+
+.group-create-label-short {
+    display: none;
 }
 
 .group-dropdown {
@@ -101,6 +108,7 @@
 }
 
 .owner-badge {
+    min-width: 72px;
     padding: 7px 10px;
     border: 1px solid var(--timesync-border);
     border-radius: 8px;
@@ -108,6 +116,8 @@
     color: var(--timesync-primary-dark);
     font-size: 13px;
     font-weight: 600;
+    line-height: 1.35;
+    text-align: center;
     white-space: nowrap;
 }
 
@@ -186,4 +196,58 @@
 
 .confirm-button:hover {
     background-color: var(--timesync-primary-dark);
+}
+
+@media (max-width: 760px) {
+    .group-page {
+        padding: 24px 20px;
+    }
+
+    .group-top-area {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 12px;
+    }
+
+    .group-top-area h1 {
+        grid-column: 1 / -1;
+    }
+
+    .group-search {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .group-create-area {
+        margin-left: 0;
+    }
+
+    .group-create-button {
+        min-width: 132px;
+        padding: 0 12px;
+    }
+
+    .group-create-label-full {
+        display: none;
+    }
+
+    .group-create-label-short {
+        display: inline;
+    }
+}
+
+@media (max-width: 430px) {
+    .group-top-area {
+        grid-template-columns: 1fr;
+    }
+
+    .group-create-area,
+    .group-create-button {
+        width: 100%;
+    }
+
+    .group-dropdown {
+        width: 100%;
+    }
 }

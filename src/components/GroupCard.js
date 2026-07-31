@@ -10,7 +10,11 @@ function GroupCard(props) {
                 <p>{group.members}명 · {group.startDate} ~ {group.endDate}</p>
             </div>
             {group.isOwner ? (
-                <span className="owner-badge">만든 그룹</span>
+                <span className="owner-badge">
+                    만든
+                    <br />
+                    그룹
+                </span>
             ) : (
                 <button
                     className="leave-button"
