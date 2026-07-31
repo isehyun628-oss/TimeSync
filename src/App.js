@@ -6,6 +6,7 @@ import GroupPage from "./pages/GroupPage";
 import CreateGroupPage from "./pages/CreateGroupPage";
 import CreateGroupSuccessPage from "./pages/CreateGroupSuccessPage";
 import GroupSchedulePage from "./pages/GroupSchedulePage";
+import "./components/ComponentTheme.css";
 // 페이지 불러오기
 
 function App() {
