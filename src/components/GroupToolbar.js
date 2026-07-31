@@ -12,7 +12,12 @@ function GroupToolbar(props) {
             />
             <div className="group-create-area">
                 <button className="group-create-button" onClick={props.onToggleDropdown}>
-                    + 그룹 생성/참가
+                    <span className="group-create-label-full">
+                        + 그룹 생성/참가
+                    </span>
+                    <span className="group-create-label-short">
+                        + 생성/참가
+                    </span>
                 </button>
                 {props.isDropdownOpen && (
                     <div className="group-dropdown">

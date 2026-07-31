@@ -4,7 +4,7 @@ import FormSection from '../components/FormSection';
 import TimeRangeInputs from '../components/TimeRangeInputs';
 import './CreateGroupPage.css';
 
-function CreateGroupPage() {
+function CreateGroupPage(props) {
     const navigate = useNavigate();
     const [groupName, setGroupName] = useState('');
     const [startTime, setStartTime] = useState('');
@@ -27,6 +27,13 @@ function CreateGroupPage() {
             startTime,
             endTime,
             nickname,
+        });
+
+        props.onCreateGroup({
+            name: groupName,
+            ownerNickname: nickname,
+            startTime,
+            endTime,
         });
 
         alert('그룹이 생성되었습니다.');
