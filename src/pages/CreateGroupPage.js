@@ -68,35 +68,41 @@ function CreateGroupPage(props) {
                 />
             </FormSection>
 
-            <FormSection label="날짜 선택">
-                <MultiDateCalendar
-                    selectedDates={selectedDates}
-                    onChange={setSelectedDates}
-                />
-            </FormSection>
+            <div className="create-group-content">
+                <div className="create-group-calendar-column">
+                    <FormSection label="날짜 선택">
+                        <MultiDateCalendar
+                            selectedDates={selectedDates}
+                            onChange={setSelectedDates}
+                        />
+                    </FormSection>
+                </div>
 
-            <FormSection label="시간 선택">
-                <TimeRangeInputs
-                    startTime={startTime}
-                    endTime={endTime}
-                    onStartTimeChange={setStartTime}
-                    onEndTimeChange={setEndTime}
-                />
-            </FormSection>
+                <div className="create-group-details-column">
+                    <FormSection label="시간 선택">
+                        <TimeRangeInputs
+                            startTime={startTime}
+                            endTime={endTime}
+                            onStartTimeChange={setStartTime}
+                            onEndTimeChange={setEndTime}
+                        />
+                    </FormSection>
 
-            <FormSection label="생성자 닉네임" htmlFor="nickname">
-                <input
-                    id="nickname"
-                    type="text"
-                    placeholder="닉네임을 입력해주세요"
-                    value={nickname}
-                    onChange={(event) => setNickname(event.target.value)}
-                />
-            </FormSection>
+                    <FormSection label="생성자 닉네임" htmlFor="nickname">
+                        <input
+                            id="nickname"
+                            type="text"
+                            placeholder="닉네임을 입력해주세요"
+                            value={nickname}
+                            onChange={(event) => setNickname(event.target.value)}
+                        />
+                    </FormSection>
 
-            <button className="create-button" onClick={handleCreate}>
-                생성하기
-            </button>
+                    <button className="create-button" onClick={handleCreate}>
+                        생성하기
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }
