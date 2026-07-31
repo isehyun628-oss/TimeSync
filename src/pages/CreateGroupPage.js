@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormSection from '../components/FormSection';
+import MultiDateCalendar from '../components/MultiDateCalendar';
 import TimeRangeInputs from '../components/TimeRangeInputs';
 import './CreateGroupPage.css';
 
@@ -10,9 +11,16 @@ function CreateGroupPage(props) {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [nickname, setNickname] = useState('');
+    const [selectedDates, setSelectedDates] = useState([]);
 
     const handleCreate = () => {
-        if (!groupName || !startTime || !endTime || !nickname) {
+        if (
+            !groupName ||
+            selectedDates.length === 0 ||
+            !startTime ||
+            !endTime ||
+            !nickname
+        ) {
             alert('모든 항목을 입력해주세요.');
             return;
         }
@@ -27,6 +35,7 @@ function CreateGroupPage(props) {
             startTime,
             endTime,
             nickname,
+            selectedDates,
         });
 
         props.onCreateGroup({
@@ -34,6 +43,7 @@ function CreateGroupPage(props) {
             ownerNickname: nickname,
             startTime,
             endTime,
+            selectedDates,
         });
 
         alert('그룹이 생성되었습니다.');
@@ -59,9 +69,10 @@ function CreateGroupPage(props) {
             </FormSection>
 
             <FormSection label="날짜 선택">
-                <div className="calendar-placeholder">
-                    달력 기능은 추후 추가
-                </div>
+                <MultiDateCalendar
+                    selectedDates={selectedDates}
+                    onChange={setSelectedDates}
+                />
             </FormSection>
 
             <FormSection label="시간 선택">

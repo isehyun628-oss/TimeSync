@@ -7,7 +7,10 @@ function GroupCard(props) {
             <div className="group-icon">{group.icon}</div>
             <div className="group-info">
                 <h2>{group.name}</h2>
-                <p>{group.members}명 · {group.startDate} ~ {group.endDate}</p>
+                <p>
+                    {group.members}명 ·{' '}
+                    {group.dateText || `${group.startDate} ~ ${group.endDate}`}
+                </p>
             </div>
             {group.isOwner ? (
                 <span className="owner-badge">
