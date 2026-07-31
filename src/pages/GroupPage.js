@@ -31,6 +31,9 @@ function GroupPage(props) {
             <GroupProfileHeader
                 profileImage="로고"
                 profileName={props.currentUser.nickname}
+                onGroups={() => {}}
+                onAccountSettings={() => navigate('/account/settings')}
+                onHelp={() => navigate('/help')}
             />
 
             <main className="group-main">

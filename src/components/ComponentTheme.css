@@ -42,6 +42,10 @@
     color: var(--timesync-primary-dark);
 }
 
+.profile-menu-area {
+    position: relative;
+}
+
 /* GroupToolbar */
 .group-page {
     background-color: var(--timesync-page);

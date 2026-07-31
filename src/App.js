@@ -7,6 +7,8 @@ import GroupPage from "./pages/GroupPage";
 import CreateGroupPage from "./pages/CreateGroupPage";
 import CreateGroupSuccessPage from "./pages/CreateGroupSuccessPage";
 import GroupSchedulePage from "./pages/GroupSchedulePage";
+import AccountSettingsPage from "./pages/AccountSettingsPage";
+import HelpPage from "./pages/HelpPage";
 import "./components/ComponentTheme.css";
 import { currentUser, initialGroups } from "./data/mockData";
 // 페이지 불러오기
@@ -60,6 +62,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+
+        <Route path="/account/settings" element={<AccountSettingsPage />} />
+
+        <Route path="/help" element={<HelpPage />} />
 
         <Route
           path="/groups"
