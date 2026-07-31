@@ -5,7 +5,7 @@ import './GuestJoinPopup.css';
 /* 게스트가 그룹 정보를 확인하고 참여 정보를 입력하는 두 번째 팝업 */
 function GuestJoinPopup(props) {
     const { group } = props;
-    const [nickname, setNickname] = useState('');
+    const [nickname, setNickname] = useState(props.initialNickname || '');
     const [password, setPassword] = useState('');
     const [participantOpen, setParticipantOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -98,10 +98,12 @@ function GuestJoinPopup(props) {
                     <p className="guest-popup-error">{errorMessage}</p>
                 )}
 
-                <div className="guest-login-guide">
-                    <span>이미 계정이 있으신가요?</span>
-                    <button onClick={props.onLogin}>로그인하기</button>
-                </div>
+                {props.showLoginGuide !== false && (
+                    <div className="guest-login-guide">
+                        <span>이미 계정이 있으신가요?</span>
+                        <button onClick={props.onLogin}>로그인하기</button>
+                    </div>
+                )}
 
                 <button className="guest-popup-primary" onClick={handleJoin}>
                     참여

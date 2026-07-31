@@ -3,20 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import GuestJoinPopup from '../components/GuestJoinPopup';
 import InviteCodePopup from '../components/InviteCodePopup';
 import LoginActions from '../components/LoginActions';
+import { inviteGroup } from '../data/mockData';
 import './LoginPage.css';
-
-/* 백엔드 연결 전 사용하는 임시 그룹 데이터 */
-const mockGroup = {
-    id: 1,
-    name: '테스트 그룹',
-    icon: '⭐',
-    ownerNickname: '생성자 닉네임',
-    participants: [
-        { id: 1, name: '참가자1' },
-        { id: 2, name: '참가자2' },
-        { id: 3, name: '참가자3' },
-    ],
-};
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -53,7 +41,7 @@ function LoginPage() {
             {guestStep === 'details' && (
                 <GuestJoinPopup
                     inviteCode={inviteCode}
-                    group={mockGroup}
+                    group={inviteGroup}
                     onClose={closeGuestPopup}
                     onLogin={moveToGroups}
                     onJoin={() => navigate('/groups/schedule')}
