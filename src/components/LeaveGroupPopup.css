@@ -1,0 +1,81 @@
+.leave-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(34, 24, 52, 0.38);
+}
+
+.leave-popup {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--timesync-border);
+    border-radius: 12px;
+    background-color: var(--timesync-page);
+    box-shadow: 0 16px 40px rgba(109, 40, 217, 0.2);
+    text-align: center;
+}
+
+.leave-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: none;
+    background: none;
+    color: var(--timesync-primary-dark);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.leave-popup-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: var(--timesync-primary-dark);
+    font-size: 18px;
+}
+
+.leave-popup h2 {
+    margin: 6px 0 10px;
+    color: #222;
+    font-size: 20px;
+}
+
+.leave-popup-confirm,
+.leave-popup-cancel {
+    width: 100%;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.leave-popup-confirm {
+    border: none;
+    background-color: var(--timesync-primary);
+    color: white;
+}
+
+.leave-popup-confirm:hover {
+    background-color: var(--timesync-primary-dark);
+}
+
+.leave-popup-cancel {
+    border: 1px solid var(--timesync-border);
+    background-color: white;
+    color: var(--timesync-primary-dark);
+}
+
+.leave-popup-cancel:hover {
+    background-color: var(--timesync-surface);
+}

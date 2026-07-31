@@ -5,6 +5,7 @@ import GroupCard from '../components/GroupCard';
 import GroupProfileHeader from '../components/GroupProfileHeader';
 import GroupToolbar from '../components/GroupToolbar';
 import InviteCodePopup from '../components/InviteCodePopup';
+import LeaveGroupPopup from '../components/LeaveGroupPopup';
 import { inviteGroup } from '../data/mockData';
 import './GroupPage.css';
 
@@ -14,6 +15,7 @@ function GroupPage(props) {
     const [searchText, setSearchText] = useState('');
     const [joinStep, setJoinStep] = useState(null);
     const [inviteCode, setInviteCode] = useState('');
+    const [leaveGroup, setLeaveGroup] = useState(null);
 
     const filteredGroups = props.groups.filter((group) =>
         group.name.includes(searchText)
@@ -47,7 +49,11 @@ function GroupPage(props) {
                 <section className="group-list">
                     {filteredGroups.length > 0 ? (
                         filteredGroups.map((group) => (
-                            <GroupCard group={group} key={group.id} />
+                            <GroupCard
+                                group={group}
+                                key={group.id}
+                                onLeave={setLeaveGroup}
+                            />
                         ))
                     ) : (
                         <p className="no-group-message">
@@ -77,6 +83,17 @@ function GroupPage(props) {
                     onJoin={() => {
                         props.onJoinGroup(inviteGroup);
                         closeJoinPopup();
+                    }}
+                />
+            )}
+
+            {leaveGroup && (
+                <LeaveGroupPopup
+                    group={leaveGroup}
+                    onCancel={() => setLeaveGroup(null)}
+                    onConfirm={() => {
+                        props.onLeaveGroup(leaveGroup.id);
+                        setLeaveGroup(null);
                     }}
                 />
             )}

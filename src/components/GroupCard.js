@@ -9,13 +9,17 @@ function GroupCard(props) {
                 <h2>{group.name}</h2>
                 <p>{group.members}명 · {group.startDate} ~ {group.endDate}</p>
             </div>
-            <button
-                className="leave-button"
-                aria-label={`${group.name} 나가기`}
-                onClick={() => props.onLeave?.(group.id)}
-            >
-                ↪
-            </button>
+            {group.isOwner ? (
+                <span className="owner-badge">만든 그룹</span>
+            ) : (
+                <button
+                    className="leave-button"
+                    aria-label={`${group.name} 나가기`}
+                    onClick={() => props.onLeave(group)}
+                >
+                    ↪
+                </button>
+            )}
         </div>
     );
 }

@@ -100,6 +100,17 @@
     color: var(--timesync-primary-dark);
 }
 
+.owner-badge {
+    padding: 7px 10px;
+    border: 1px solid var(--timesync-border);
+    border-radius: 8px;
+    background-color: var(--timesync-surface);
+    color: var(--timesync-primary-dark);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 /* FormSection, TimeRangeInputs */
 .create-group-page {
     background-color: var(--timesync-page);

@@ -26,6 +26,7 @@ export const initialGroups = [
         members: 4,
         startDate: '26/04/30',
         endDate: '26/05/01',
+        isOwner: false,
     },
     {
         id: 2,
@@ -34,5 +35,6 @@ export const initialGroups = [
         members: 5,
         startDate: '26/05/03',
         endDate: '26/05/10',
+        isOwner: true,
     },
 ];

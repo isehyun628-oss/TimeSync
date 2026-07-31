@@ -29,9 +29,31 @@ function App() {
           members: group.participants.length + 1,
           startDate: group.startDate,
           endDate: group.endDate,
+          isOwner: false,
         },
       ];
     });
+  };
+
+  const handleCreateGroup = (group) => {
+    setGroups((currentGroups) => [
+      ...currentGroups,
+      {
+        ...group,
+        id: Date.now(),
+        icon: "⭐",
+        members: 1,
+        startDate: "미정",
+        endDate: "미정",
+        isOwner: true,
+      },
+    ]);
+  };
+
+  const handleLeaveGroup = (groupId) => {
+    setGroups((currentGroups) =>
+      currentGroups.filter((group) => group.id !== groupId)
+    );
   };
 
   return (
@@ -46,13 +68,14 @@ function App() {
               groups={groups}
               currentUser={currentUser}
               onJoinGroup={handleJoinGroup}
+              onLeaveGroup={handleLeaveGroup}
             />
           }
         />
 
         <Route
           path="/groups/create"
-          element={<CreateGroupPage />}
+          element={<CreateGroupPage onCreateGroup={handleCreateGroup} />}
         />
 
         <Route
