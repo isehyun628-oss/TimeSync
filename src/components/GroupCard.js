@@ -2,8 +2,22 @@
 function GroupCard(props) {
     const { group } = props;
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            props.onOpen(group);
+        }
+    };
+
     return (
-        <div className="group-card">
+        <div
+            className="group-card"
+            role="link"
+            tabIndex={0}
+            onClick={() => props.onOpen(group)}
+            onKeyDown={handleKeyDown}
+            aria-label={`${group.name} 일정 열기`}
+        >
             <div className="group-icon">{group.icon}</div>
             <div className="group-info">
                 <h2>{group.name}</h2>
@@ -22,7 +36,10 @@ function GroupCard(props) {
                 <button
                     className="leave-button"
                     aria-label={`${group.name} 나가기`}
-                    onClick={() => props.onLeave(group)}
+                    onClick={(event) => {
+                        event.stopPropagation();
+                        props.onLeave(group);
+                    }}
                 >
                     ↪
                 </button>

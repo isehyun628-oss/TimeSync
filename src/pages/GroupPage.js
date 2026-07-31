@@ -56,6 +56,11 @@ function GroupPage(props) {
                                 group={group}
                                 key={group.id}
                                 onLeave={setLeaveGroup}
+                                onOpen={(selectedGroup) =>
+                                    navigate('/groups/schedule', {
+                                        state: { group: selectedGroup },
+                                    })
+                                }
                             />
                         ))
                     ) : (
