@@ -123,10 +123,12 @@
 .guest-login-guide button {
     padding: 0;
     border: none;
-    border-bottom: 1px solid currentColor;
     background: none;
     color: var(--timesync-primary-dark);
     font: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
     cursor: pointer;
 }
 
@@ -228,6 +230,15 @@
     .guest-group-meta,
     .guest-login-guide {
         flex-direction: column;
+        align-items: center;
         gap: 6px;
+    }
+
+    .guest-login-guide button {
+        width: fit-content;
+    }
+
+    .guest-detail-popup .guest-group-title {
+        margin-top: 24px;
     }
 }

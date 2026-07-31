@@ -23,8 +23,12 @@ function MultiDateCalendar(props) {
     const month = visibleMonth.getMonth();
     const firstDayIndex = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
-    const isCurrentMonth =
+    const isAtMinimumMonth =
         year === today.getFullYear() && month === today.getMonth();
+    const selectableYears = Array.from(
+        { length: 11 },
+        (_, index) => today.getFullYear() + index
+    );
 
     const calendarCells = [
         ...Array(firstDayIndex).fill(null),
@@ -37,7 +41,6 @@ function MultiDateCalendar(props) {
 
         const dateKey = toDateKey(date);
         const alreadySelected = props.selectedDates.includes(dateKey);
-
         const nextDates = alreadySelected
             ? props.selectedDates.filter((selectedDate) => selectedDate !== dateKey)
             : [...props.selectedDates, dateKey];
@@ -53,12 +56,52 @@ function MultiDateCalendar(props) {
                     onClick={() =>
                         setVisibleMonth(new Date(year, month - 1, 1))
                     }
-                    disabled={isCurrentMonth}
+                    disabled={isAtMinimumMonth}
                     aria-label="이전 달"
                 >
                     ‹
                 </button>
-                <strong>{year}년 {month + 1}월</strong>
+
+                <div className="multi-calendar-period">
+                    <select
+                        aria-label="연도 선택"
+                        value={year}
+                        onChange={(event) =>
+                            setVisibleMonth(
+                                new Date(Number(event.target.value), month, 1)
+                            )
+                        }
+                    >
+                        {selectableYears.map((selectableYear) => (
+                            <option value={selectableYear} key={selectableYear}>
+                                {selectableYear}년
+                            </option>
+                        ))}
+                    </select>
+                    <select
+                        aria-label="월 선택"
+                        value={month}
+                        onChange={(event) =>
+                            setVisibleMonth(
+                                new Date(year, Number(event.target.value), 1)
+                            )
+                        }
+                    >
+                        {Array.from({ length: 12 }, (_, index) => (
+                            <option
+                                value={index}
+                                key={index}
+                                disabled={
+                                    year === today.getFullYear() &&
+                                    index < today.getMonth()
+                                }
+                            >
+                                {index + 1}월
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <button
                     type="button"
                     onClick={() =>
@@ -71,8 +114,13 @@ function MultiDateCalendar(props) {
             </div>
 
             <div className="multi-calendar-grid">
-                {weekDays.map((weekDay) => (
-                    <span className="multi-calendar-weekday" key={weekDay}>
+                {weekDays.map((weekDay, index) => (
+                    <span
+                        className={`multi-calendar-weekday${
+                            index === 0 ? ' is-sunday' : ''
+                        }${index === 6 ? ' is-saturday' : ''}`}
+                        key={weekDay}
+                    >
                         {weekDay}
                     </span>
                 ))}
@@ -91,11 +139,14 @@ function MultiDateCalendar(props) {
                     const dateKey = toDateKey(date);
                     const isPast = date < today;
                     const isSelected = props.selectedDates.includes(dateKey);
+                    const dayOfWeek = date.getDay();
 
                     return (
                         <button
                             className={`multi-calendar-day${
                                 isSelected ? ' is-selected' : ''
+                            }${dayOfWeek === 0 ? ' is-sunday' : ''}${
+                                dayOfWeek === 6 ? ' is-saturday' : ''
                             }`}
                             type="button"
                             key={dateKey}
@@ -112,7 +163,7 @@ function MultiDateCalendar(props) {
             <p className="multi-calendar-summary">
                 {props.selectedDates.length > 0
                     ? `${props.selectedDates.length}일 선택됨`
-                    : '날짜를 선택해주세요'}
+                    : '날짜를 선택해 주세요'}
             </p>
         </div>
     );
