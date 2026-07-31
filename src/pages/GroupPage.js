@@ -1,134 +1,67 @@
-import { useState } from "react";
-// react의 useState 불러오기
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import GuestJoinPopup from '../components/GuestJoinPopup';
+import GroupCard from '../components/GroupCard';
+import GroupProfileHeader from '../components/GroupProfileHeader';
+import GroupToolbar from '../components/GroupToolbar';
+import InviteCodePopup from '../components/InviteCodePopup';
+import LeaveGroupPopup from '../components/LeaveGroupPopup';
+import { inviteGroup } from '../data/mockData';
+import './GroupPage.css';
 
-import { useNavigate } from "react-router-dom";
-// 라우터 불러오기
-
-import "./GroupPage.css";
-// css 불러오기
-
-function GroupPage() {
+function GroupPage(props) {
     const navigate = useNavigate();
-    // 페이지 이동
-
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    // 드롭다운 설정
+    const [searchText, setSearchText] = useState('');
+    const [joinStep, setJoinStep] = useState(null);
+    const [inviteCode, setInviteCode] = useState('');
+    const [leaveGroup, setLeaveGroup] = useState(null);
 
-    const [searchText, setSearchText] = useState("");
-    // 검색 기능
-
-    const handleCreateGroup = () => {
-        navigate("/groups/create");
-    };
-    // 그룹 생성 페이지로 이동
-
-    const groups = [
-        {
-            id: 1,
-            icon: "🎸",
-            name: "기타 스터디",
-            members: 4,
-            startDate: "26/04/30",
-            endDate: "26/05/01",
-        },
-        {
-            id: 2,
-            icon: "📘",
-            name: "알고리즘 스터디",
-            members: 5,
-            startDate: "26/05/03",
-            endDate: "26/05/10",
-        },
-    ];
-    // 그룹 배열
-
-    const filteredGroups = groups.filter((group) =>
+    const filteredGroups = props.groups.filter((group) =>
         group.name.includes(searchText)
     );
-    // 검색어가 포함된 그룹만 필터링
+
+    const closeJoinPopup = () => {
+        setJoinStep(null);
+        setInviteCode('');
+    };
 
     return (
-        // 그룹 전체 페이지
         <div className="group-page">
+            <GroupProfileHeader
+                profileImage="로고"
+                profileName={props.currentUser.nickname}
+                onGroups={() => {}}
+                onAccountSettings={() => navigate('/account/settings')}
+                onHelp={() => navigate('/help')}
+            />
 
-            {/* 그룹 헤더 (로고, 이름) */}
-            <header className="group-header">
-                <div className="profile-area">
-                    <div className="profile-image">로고</div>
-                    <span className="profile-name">이름</span>
-                </div>
-
-                <button className="menu-button">☰</button>
-            </header>
-
-            {/* 그룹 목록 메인 영역 */}
             <main className="group-main">
-                <div className="group-top-area">
-                    <h1>참여 중인 그룹</h1>
+                <GroupToolbar
+                    searchText={searchText}
+                    onSearchChange={setSearchText}
+                    isDropdownOpen={isDropdownOpen}
+                    onToggleDropdown={() => setIsDropdownOpen(!isDropdownOpen)}
+                    onCreateGroup={() => navigate('/groups/create')}
+                    onJoinGroup={() => {
+                        setIsDropdownOpen(false);
+                        setJoinStep('code');
+                    }}
+                />
 
-                    {/* 그룹 검색창 */}
-                    <input
-                        className="group-search"
-                        type="text"
-                        placeholder="검색"
-                        value={searchText}
-                        onChange={(event) =>
-                            setSearchText(event.target.value)
-                        }
-                    />
-
-                    {/* 그룹 생성 및 참가 영역 */}
-                    <div className="group-create-area">
-                        <button
-                            className="group-create-button"
-                            onClick={() =>
-                                setIsDropdownOpen(!isDropdownOpen)
-                            }
-                        >
-                            + 그룹 생성/참가
-                        </button>
-
-                        {/* 그룹 생성/참가 버튼을 누르면 드롭다운 표시 */}
-                        {isDropdownOpen && (
-                            <div className="group-dropdown">
-                                <button onClick={handleCreateGroup}>
-                                    새 그룹 만들기
-                                </button>
-
-                                <button>
-                                    초대코드로 참가하기
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                {/* 참여 중인 그룹 목록 */}
                 <section className="group-list">
                     {filteredGroups.length > 0 ? (
                         filteredGroups.map((group) => (
-                            <div
-                                className="group-card"
+                            <GroupCard
+                                group={group}
                                 key={group.id}
-                            >
-                                <div className="group-icon">
-                                    {group.icon}
-                                </div>
-
-                                <div className="group-info">
-                                    <h2>{group.name}</h2>
-
-                                    <p>
-                                        {group.members}명 ·{" "}
-                                        {group.startDate} ~{" "}
-                                        {group.endDate}
-                                    </p>
-                                </div>
-
-                                <button className="leave-button">
-                                    ↪
-                                </button>
-                            </div>
+                                onLeave={setLeaveGroup}
+                                onOpen={(selectedGroup) =>
+                                    navigate('/groups/schedule', {
+                                        state: { group: selectedGroup },
+                                    })
+                                }
+                            />
                         ))
                     ) : (
                         <p className="no-group-message">
@@ -137,6 +70,41 @@ function GroupPage() {
                     )}
                 </section>
             </main>
+
+            {joinStep === 'code' && (
+                <InviteCodePopup
+                    onClose={closeJoinPopup}
+                    onEnter={(code) => {
+                        setInviteCode(code);
+                        setJoinStep('details');
+                    }}
+                />
+            )}
+
+            {joinStep === 'details' && (
+                <GuestJoinPopup
+                    inviteCode={inviteCode}
+                    group={inviteGroup}
+                    initialNickname={props.currentUser.nickname}
+                    showLoginGuide={false}
+                    onClose={closeJoinPopup}
+                    onJoin={() => {
+                        props.onJoinGroup(inviteGroup);
+                        closeJoinPopup();
+                    }}
+                />
+            )}
+
+            {leaveGroup && (
+                <LeaveGroupPopup
+                    group={leaveGroup}
+                    onCancel={() => setLeaveGroup(null)}
+                    onConfirm={() => {
+                        props.onLeaveGroup(leaveGroup.id);
+                        setLeaveGroup(null);
+                    }}
+                />
+            )}
         </div>
     );
 }
