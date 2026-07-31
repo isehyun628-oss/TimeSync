@@ -42,6 +42,10 @@
     color: var(--timesync-primary-dark);
 }
 
+.profile-menu-area {
+    position: relative;
+}
+
 /* GroupToolbar */
 .group-page {
     background-color: var(--timesync-page);
@@ -95,6 +99,17 @@
     border: 1px solid var(--timesync-border-soft);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(109, 40, 217, 0.08);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.group-card:hover,
+.group-card:focus-visible {
+    border-color: var(--timesync-border);
+    box-shadow: 0 8px 20px rgba(109, 40, 217, 0.14);
+    transform: translateY(-2px);
+    outline: none;
 }
 
 .group-icon {

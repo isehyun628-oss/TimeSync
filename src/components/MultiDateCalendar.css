@@ -1,0 +1,129 @@
+.multi-calendar {
+    width: 100%;
+    max-width: 460px;
+    padding: 16px;
+    border: 1px solid var(--timesync-border);
+    border-radius: 12px;
+    background-color: white;
+}
+
+.multi-calendar-header {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 36px 1fr 36px;
+    align-items: center;
+    text-align: center;
+}
+
+.multi-calendar-period {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.multi-calendar-period select {
+    min-height: 34px;
+    padding: 0 26px 0 10px;
+    border: 1px solid var(--timesync-border-soft);
+    border-radius: 8px;
+    background-color: white;
+    color: var(--timesync-primary-dark);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.multi-calendar-header button {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--timesync-surface);
+    color: var(--timesync-primary-dark);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.multi-calendar-header button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.multi-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
+    gap: 4px;
+}
+
+.multi-calendar-weekday {
+    padding: 5px 0;
+    color: #666;
+    font-size: 13px;
+    text-align: center;
+}
+
+.multi-calendar-day {
+    aspect-ratio: 1;
+    min-height: 32px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.multi-calendar-day:hover:not(:disabled) {
+    border-color: var(--timesync-border);
+    background-color: var(--timesync-surface);
+}
+
+.multi-calendar-day.is-selected {
+    border-color: #c4b5fd;
+    background-color: #ede9fe;
+    color: var(--timesync-primary-dark);
+    font-weight: 600;
+}
+
+.multi-calendar-weekday.is-sunday,
+.multi-calendar-day.is-sunday:not(:disabled):not(.is-selected) {
+    color: #dc5a6b;
+}
+
+.multi-calendar-weekday.is-saturday,
+.multi-calendar-day.is-saturday:not(:disabled):not(.is-selected) {
+    color: #4776c5;
+}
+
+.multi-calendar-day:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.multi-calendar-summary {
+    margin: 14px 0 0;
+    color: var(--timesync-primary-dark);
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .multi-calendar {
+        padding: 12px;
+    }
+
+    .multi-calendar-grid {
+        gap: 3px;
+    }
+
+    .multi-calendar-day {
+        min-height: 30px;
+        font-size: 14px;
+    }
+
+    .multi-calendar-period select {
+        padding-right: 20px;
+        font-size: 13px;
+    }
+}

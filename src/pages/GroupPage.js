@@ -31,6 +31,9 @@ function GroupPage(props) {
             <GroupProfileHeader
                 profileImage="로고"
                 profileName={props.currentUser.nickname}
+                onGroups={() => {}}
+                onAccountSettings={() => navigate('/account/settings')}
+                onHelp={() => navigate('/help')}
             />
 
             <main className="group-main">
@@ -53,6 +56,11 @@ function GroupPage(props) {
                                 group={group}
                                 key={group.id}
                                 onLeave={setLeaveGroup}
+                                onOpen={(selectedGroup) =>
+                                    navigate('/groups/schedule', {
+                                        state: { group: selectedGroup },
+                                    })
+                                }
                             />
                         ))
                     ) : (

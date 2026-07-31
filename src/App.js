@@ -7,6 +7,8 @@ import GroupPage from "./pages/GroupPage";
 import CreateGroupPage from "./pages/CreateGroupPage";
 import CreateGroupSuccessPage from "./pages/CreateGroupSuccessPage";
 import GroupSchedulePage from "./pages/GroupSchedulePage";
+import AccountSettingsPage from "./pages/AccountSettingsPage";
+import HelpPage from "./pages/HelpPage";
 import "./components/ComponentTheme.css";
 import { currentUser, initialGroups } from "./data/mockData";
 // 페이지 불러오기
@@ -36,6 +38,14 @@ function App() {
   };
 
   const handleCreateGroup = (group) => {
+    const firstDate = group.selectedDates[0];
+    const [year, month, day] = firstDate.split("-");
+    const firstDateLabel = `${year.slice(2)}/${month}/${day}`;
+    const dateText =
+      group.selectedDates.length > 1
+        ? `${firstDateLabel} 외 ${group.selectedDates.length - 1}일`
+        : firstDateLabel;
+
     setGroups((currentGroups) => [
       ...currentGroups,
       {
@@ -43,8 +53,7 @@ function App() {
         id: Date.now(),
         icon: "⭐",
         members: 1,
-        startDate: "미정",
-        endDate: "미정",
+        dateText,
         isOwner: true,
       },
     ]);
@@ -60,6 +69,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+
+        <Route path="/account/settings" element={<AccountSettingsPage />} />
+
+        <Route path="/help" element={<HelpPage />} />
 
         <Route
           path="/groups"

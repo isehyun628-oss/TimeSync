@@ -26,7 +26,9 @@ function LoginPage() {
                 onGuestLogin={() => setGuestStep('code')}
             />
 
-            <button className="help-btn">i</button>
+            <button className="help-btn" onClick={() => navigate('/help')}>
+                i
+            </button>
 
             {guestStep === 'code' && (
                 <InviteCodePopup

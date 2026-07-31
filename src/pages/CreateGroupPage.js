@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormSection from '../components/FormSection';
+import MultiDateCalendar from '../components/MultiDateCalendar';
 import TimeRangeInputs from '../components/TimeRangeInputs';
 import './CreateGroupPage.css';
 
@@ -10,9 +11,16 @@ function CreateGroupPage(props) {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [nickname, setNickname] = useState('');
+    const [selectedDates, setSelectedDates] = useState([]);
 
     const handleCreate = () => {
-        if (!groupName || !startTime || !endTime || !nickname) {
+        if (
+            !groupName ||
+            selectedDates.length === 0 ||
+            !startTime ||
+            !endTime ||
+            !nickname
+        ) {
             alert('모든 항목을 입력해주세요.');
             return;
         }
@@ -27,6 +35,7 @@ function CreateGroupPage(props) {
             startTime,
             endTime,
             nickname,
+            selectedDates,
         });
 
         props.onCreateGroup({
@@ -34,6 +43,7 @@ function CreateGroupPage(props) {
             ownerNickname: nickname,
             startTime,
             endTime,
+            selectedDates,
         });
 
         alert('그룹이 생성되었습니다.');
@@ -58,34 +68,41 @@ function CreateGroupPage(props) {
                 />
             </FormSection>
 
-            <FormSection label="날짜 선택">
-                <div className="calendar-placeholder">
-                    달력 기능은 추후 추가
+            <div className="create-group-content">
+                <div className="create-group-calendar-column">
+                    <FormSection label="날짜 선택">
+                        <MultiDateCalendar
+                            selectedDates={selectedDates}
+                            onChange={setSelectedDates}
+                        />
+                    </FormSection>
                 </div>
-            </FormSection>
 
-            <FormSection label="시간 선택">
-                <TimeRangeInputs
-                    startTime={startTime}
-                    endTime={endTime}
-                    onStartTimeChange={setStartTime}
-                    onEndTimeChange={setEndTime}
-                />
-            </FormSection>
+                <div className="create-group-details-column">
+                    <FormSection label="시간 선택">
+                        <TimeRangeInputs
+                            startTime={startTime}
+                            endTime={endTime}
+                            onStartTimeChange={setStartTime}
+                            onEndTimeChange={setEndTime}
+                        />
+                    </FormSection>
 
-            <FormSection label="생성자 닉네임" htmlFor="nickname">
-                <input
-                    id="nickname"
-                    type="text"
-                    placeholder="닉네임을 입력해주세요"
-                    value={nickname}
-                    onChange={(event) => setNickname(event.target.value)}
-                />
-            </FormSection>
+                    <FormSection label="생성자 닉네임" htmlFor="nickname">
+                        <input
+                            id="nickname"
+                            type="text"
+                            placeholder="닉네임을 입력해주세요"
+                            value={nickname}
+                            onChange={(event) => setNickname(event.target.value)}
+                        />
+                    </FormSection>
 
-            <button className="create-button" onClick={handleCreate}>
-                생성하기
-            </button>
+                    <button className="create-button" onClick={handleCreate}>
+                        생성하기
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }
