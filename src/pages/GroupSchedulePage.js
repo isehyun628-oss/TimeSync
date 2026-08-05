@@ -2,6 +2,7 @@
 import Header from '../components/Header';
 import ParticipantPopup from '../components/ParticipantPopup';
 import SettingPopup from '../components/SettingPopup';
+import TimeTable from '../components/TimeTable';
 
 /* GroupSchedulePage.css 파일을 불러와서 디자인 적용 */
 import './GroupSchedulePage.css';
@@ -23,6 +24,17 @@ function GroupSchedulePage() {
     /* isOwner: 생성자 버전(true) 사용자 버전 (false) */
     /* 나중에 실제 데이터로 연결 예정 (현재는 하드코딩) */
     const isOwner = true;
+
+    /* 그룹 생성 시 설정한 날짜 배열 (하드코딩) */
+    const dates = [
+        '2026-05-03', '2026-05-04', '2026-05-05',
+        '2026-05-06', '2026-05-07', '2026-05-08',
+        '2026-05-09', '2026-05-10',
+    ];
+
+    /* 그룹 생성 시 설정한 시간 (하드코딩) */
+    const startTime = 16;   /* 08:00 */
+    const endTime = 40;     /* 20:00 */
 
     return (
         /* 페이지 전체 컨테이너 */
@@ -68,8 +80,14 @@ function GroupSchedulePage() {
 
                     {/* 캘린더 본체: 타임블럭이 들어갈 영역 (나중에 추가) */}
                     <div className="calender-body">
+                        <TimeTable
+                            dates={dates}
+                            startTime={startTime}
+                            endTime={endTime}
+                            readOnly={true} /* 보기 전용 */
+                            selectedCells={mySelectedCells} /* 저장된 선택 칸 */
+                        />
                     </div>
-
                 </div>
 
                 {/* 오른쪽: 전체 캘린더 */}
@@ -84,6 +102,12 @@ function GroupSchedulePage() {
 
                     {/* 캘린더 본체: 타임블럭이 들어갈 영역 (나중에 추가) */}
                     <div className="calender-body">
+                        <TimeTable
+                            dates={dates}
+                            startTime={startTime}
+                            endTime={endTime}
+                            readOnly={true} /* 보기 전용 */
+                        />
                     </div>
 
                 </div>

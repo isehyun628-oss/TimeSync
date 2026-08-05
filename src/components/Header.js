@@ -4,6 +4,8 @@ import './Header.css';
 /* useState: 팝업 열림/닫힘 상태를 저장하기 위해 불러옴 */
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 /* 필요한 컴포넌트 불러오기 */
 import SharePopup from './SharePopup';
 
@@ -11,6 +13,7 @@ import SharePopup from './SharePopup';
 /* props를 받는 Header 컴포넌트 */
 function Header(props) {
 
+    const navigate = useNavigate();
     /* shareOpen: 공유 팝업이 열렸는지(true) 닫혔는지(false) 저장하는 상태 */
     /* 초기값은 false(닫힘) */
     const [shareOpen, setShareOpen] = useState(false);
@@ -24,7 +27,7 @@ function Header(props) {
             <div className="header-left">
 
                 {/* 뒤로가기 버튼: 이전 페이지로 이동 (기능 나중에 추가) */}
-                <button className="header-btn">〈</button>
+                <button className="header-btn" onClick={() => navigate('/groups')}>〈</button>
 
                 {/* 그룹 아이콘: 부모에서 받은 이모지 표시 */}
                 <span>{props.icon}</span>

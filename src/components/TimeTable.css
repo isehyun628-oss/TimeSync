@@ -1,0 +1,160 @@
+/* 캘린더 전체 컨테이너 */
+.timetable-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    user-select: none;  /* 드래그할 때 텍스트 선택 방지 */
+}
+
+/* 왼쪽 시간축 + 오른쪽 날짜/셀 */
+.timetable-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+/* 1행: 빈칸 + 날짜 헤더 */
+.timetable-header-row {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+/* 좌측 상단 빈칸 */
+.timetable-corner {
+    width: 52px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 날짜 헤더 + 좌우 화살표 */
+.timetable-date-row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* 날짜 헤더 각 셀 */
+.timetable-date-header {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* 2행 / 4행: 위아래 화살표 행 */
+.timetable-nav-row {
+    display: flex;
+    align-items: center;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+/* 화살표 오른쪽 빈칸 */
+.timetable-nav-empty {
+    flex: 1;
+}
+
+/* 3행: 시간 라벨 + 셀 */
+.timetable-body-row {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+/* 시간 라벨 열 */
+.timetable-time-axis {
+    width: 52px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 시간 라벨 */
+.timetable-time-label {
+    flex: 1;
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    min-height: 0;
+}
+
+/* 셀 그리드 */
+.timetable-cells {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* 각 행 */
+.timetable-row {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+
+/* 화살표 너비만큼 빈칸 */
+.timetable-arrow-placeholder {
+    width: 28px;
+    flex-shrink: 0;
+}
+
+/* 화살표 버튼 */
+.timetable-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    padding: 2px 4px;
+    flex-shrink: 0;
+    width: 28px;
+}
+
+timetable-arrow:disabled {
+    color: #aaa;     /* 비활성 시 회색 */
+    cursor: default;
+}
+
+/* 화살표 자리 비우기 */
+.timetable-arrow-placeholder {
+    width: 28px;
+    flex-shrink: 0;
+}
+
+/* 타임블럭 */
+.timetable-cell {
+    flex: 1;
+    border: 0.5px solid #ddd;
+    cursor: pointer;
+    background-color: white;
+    min-width: 0;
+    min-height: 0;
+}
+
+/* 선택된 타임블럭 */
+.timetable-cell.is-selected {
+    background-color: purple;
+}
+
+/* hover */
+.timetable-cell:hover {
+    background-color: #e9d5ff;
+}
+
+.timetable-cell.is-selected:hover {
+    background-color: purple;
+}
