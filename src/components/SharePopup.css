@@ -2,14 +2,17 @@
 .sharepopup-container {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    padding: 10px;
-    gap: 12px;
-    background-color: #f3f0ff;
-    border: 1px solid #c4b5fd;
-    border-radius: 12px;
+    width: 320px;
+    background-color: white;
+    border: 1.5px solid #c4b5fd;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    gap: 8px;
+    position: relative;
 }
 
+/* 닫기 버튼 */
 .delete-btn {
     align-self: flex-end;
     background: none;
@@ -19,37 +22,58 @@
 }
 
 .sharepopup-content {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
+/* 행 레이아웃 */
 .sharepopup-invite-row {
     display: flex;
     align-items: center;
-    gap: 8px;
-    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%
 }
 
+/* 각 항 사이 구분선 */
+.sharepopup-invite-row:first-child {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sharepopup-invite-row:hover {
+    background-color: #f5f3ff;
+}
+
+/* 초대코드와 초대링크 텍스트 */
 .invite-text {
     flex: 1;
+    min-width: 0;
     overflow: hidden;
-    color: #6d28d9;
-    font-size: 13px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
 }
 
+/* 복사 버튼 */
 .copy-btn {
     flex-shrink: 0;
-    padding: 4px 8px;
+    padding: 6px 12px;
     background: #7c3aed;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background-color: #6d28d9;
 }
 
 /* 생성 완료 페이지 안에서 사용하는 형태 */
@@ -64,4 +88,12 @@
 
 .sharepopup-inline .invite-text {
     font-size: 14px;
+}
+
+.copy-toast {
+    text-align: center;
+    font-size: 13px;
+    color: black;
+    padding: 4px 0;
+    font-weight: 600;
 }

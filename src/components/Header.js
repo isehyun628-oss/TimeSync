@@ -27,7 +27,9 @@ function Header(props) {
             <div className="header-left">
 
                 {/* 뒤로가기 버튼: 이전 페이지로 이동 (기능 나중에 추가) */}
-                <button className="header-btn" onClick={() => navigate('/groups')}>〈</button>
+                <button className="header-back-btn" onClick={() => navigate('/groups')}>
+                    〈
+                </button>
 
                 {/* 그룹 아이콘: 부모에서 받은 이모지 표시 */}
                 <span>{props.icon}</span>
@@ -42,7 +44,23 @@ function Header(props) {
                         {/* 날짜/시간 텍스트 */}
                         <span className="header-date">{props.date}</span>
                         {/* 공유 버튼: 누르면 초대링크/초대코드 팝업 표시 (기능 나중에 추가) */}
-                        <button className="header-btn" onClick={() => { setShareOpen(true) }}>🔗</button>
+                        <button className="header-share-btn" onClick={() => { setShareOpen(true) }}>
+                            🔗
+                        </button>
+
+                        {/* shareOpen이 true일 때만 SharePopup 표시 */}
+                        {/* onClose: ✕ 버튼 누르면 shareOpen을 false로 바꿔서 팝업 닫기 */}
+                        {shareOpen && (
+                            <div style={{
+                                position: 'absolute',
+                                left: '100%',       /* 버튼 바로 오른쪽 옆 */
+                                top: '-10px',
+                                marginLeft: '8px',  /* 버튼과의 간격 */
+                                zIndex: 100     /* 다른 요소 위에 표시 */
+                            }}>
+                                <SharePopup onClose={() => { setShareOpen(false) }} />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -50,22 +68,10 @@ function Header(props) {
             {/* 오른쪽 설정 버튼 */}
             <div>
                 {/* 설정 버튼: 누르면 설정 팝업 표시 (기능 나중에 추가) */}
-                <button className="header-btn" onClick={props.onSettingClick}>설정</button>
+                <button className="header-setting-btn" onClick={props.onSettingClick}>
+                    설정
+                </button>
             </div>
-
-            {/* shareOpen이 true일 때만 SharePopup 표시 */}
-            {/* onClose: ✕ 버튼 누르면 shareOpen을 false로 바꿔서 팝업 닫기 */}
-            {shareOpen && (
-                <div style={{
-                    position: 'absolute',
-                    top: '100%',    /* 헤더 파로 아래 */
-                    left: '180px',  /* 공유버튼 위치에 맞게 조절 */
-                    zIndex: 100     /* 다른 요소 위에 표시 */
-                }}>
-                    <SharePopup onClose={() => { setShareOpen(false) }} />
-                </div>
-            )}
-
         </div>
     );
 }
