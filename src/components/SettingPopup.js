@@ -151,7 +151,7 @@ function SettingPopup(props) {
                         <input
                             className="setting-input"
                             type="text"
-                            placeholder="닉네임 입력"
+                            placeholder="닉네임 수정"
                             value={userNickname}
                             onChange={(e) => setUserNickname(e.target.value)}
                         />

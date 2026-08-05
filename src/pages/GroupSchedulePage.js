@@ -4,6 +4,8 @@ import ParticipantPopup from '../components/ParticipantPopup';
 import SettingPopup from '../components/SettingPopup';
 import TimeTable from '../components/TimeTable';
 import CellPopup from '../components/CellPopup';
+import LeaveGroupPopup from '../components/LeaveGroupPopup';
+import DeleteGroupPopup from '../components/DeleteGroupPopup';
 
 /* GroupSchedulePage.css 파일을 불러와서 디자인 적용 */
 import './GroupSchedulePage.css';
@@ -82,6 +84,13 @@ function GroupSchedulePage() {
         return { available, unavailable };
     };
 
+    /* 그룹 나가기/삭제 팝업 */
+    const [leavePopupOpen, setLeavePopupOpen] = useState(false);
+    const [deletePopupOpen, setDeletePopupOpen] = useState(false);
+
+    /* 그룹 정보 (나중에 백엔드로 교체) */
+    const groupInfo = { icon: '⭐', name: '테스트 그룹' };
+
     return (
         /* 페이지 전체 컨테이너 */
         <div className="group-schedule-container">
@@ -108,8 +117,34 @@ function GroupSchedulePage() {
                     <SettingPopup
                         onClose={() => { setSettingOpen(false) }}
                         isOwner={isOwner}
+                        onLeave={() => { setLeavePopupOpen(true) }}
+                        onDelete={() => { setDeletePopupOpen(true) }}
                     />
                 </div>
+            )}
+
+            {/* 그룹 나가기 팝업 */}
+            {leavePopupOpen && (
+                <LeaveGroupPopup
+                    group={groupInfo}
+                    onConfirm={() => {
+                        setLeavePopupOpen(false);
+                        setSettingOpen(false);
+                    }}
+                    onCancel={() => { setLeavePopupOpen(false) }}
+                />
+            )}
+
+            {/* 그룹 삭제 팝업 */}
+            {deletePopupOpen && (
+                <DeleteGroupPopup
+                    group={groupInfo}
+                    onConfirm={() => {
+                        setDeletePopupOpen(false);
+                        setSettingOpen(false);
+                    }}
+                    onCancel={() => { setDeletePopupOpen(false) }}
+                />
             )}
             
             {/* 캘린더 두 개를 가로로 나열하는 컨테이너 */}
@@ -193,7 +228,7 @@ function GroupSchedulePage() {
                             </div>
                         );
                     })()}
-                    
+
                 </div>
 
                 {/* participantOpen이 true일 때만 ParticipantPopup 표시 */}

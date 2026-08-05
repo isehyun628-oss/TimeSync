@@ -54,18 +54,6 @@
     color: black;
 }
 
-/* 가능한 사람 */
-.cell-popup-name.available {
-    background-color: #e9d5ff;
-    border: 1px solid #c4b5fd;
-}
-
-/* 불가능한 사람 */
-.cell-popup-name.unavailable {
-    background-color: #e9d5ff;
-    border: 1px solid #c4b5fd;
-}
-
 /* 사람이 없을 때 */
 .cell-popup-empty {
     font-size: 13px;

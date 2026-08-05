@@ -1,0 +1,94 @@
+.delete-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(34, 24, 52, 0.38);
+}
+
+.delete-popup {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--timesync-border);
+    border-radius: 12px;
+    background-color: var(--timesync-page);
+    box-shadow: 0 16px 40px rgba(109, 40, 217, 0.2);
+    text-align: center;
+}
+
+.delete-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;
+}
+
+.delete-popup-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    color: black;
+}
+
+.delete-popup h2 {
+    margin: 6px 0 10px;
+    color: black;
+    font-size: 20px;
+}
+
+/* 주의 문구 */
+.delete-popup-warning {
+    background-color: white;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    color: red;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.delete-popup-confirm,
+.delete-popup-cancel {
+    width: 100%;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 삭제 버튼은 빨간색 */
+.delete-popup-confirm {
+    border: none;
+    background-color: red;
+    color: white;
+}
+
+.delete-popup-confirm:hover {
+    background-color: #b91c1c;
+}
+
+.delete-popup-cancel {
+    border: 1px solid var(--timesync-border);
+    background-color: white;
+    color: var(--timesync-primary-dark);
+}
+
+.delete-popup-cancel:hover {
+    background-color: var(--timesync-surface);
+}
