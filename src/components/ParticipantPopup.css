@@ -21,7 +21,7 @@
 .participant-popup-title {
     font-size: 15px;
     font-weight: bold;
-    color: #6d28d9; /* 진한 보라 */
+    color: black;
 }
 
 /* 닫기 버튼 */
@@ -30,7 +30,7 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
-    color: #6d28d9; /* 진한 보라 */
+    color: black; /* 진한 보라 */
 }
 
 /* 참가자 목록 전체를 감싸는 컨테이너 */
@@ -54,7 +54,7 @@ participant-item {
 /* 참가자 이름 텍스트 */
 .participant-item span {
     font-size: 14px;
-    color: #6d28d9;
+    color: black;
 }
 
 /* 체크박스 스타일 */

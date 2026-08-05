@@ -48,7 +48,7 @@ function TimeTable(props) {
             setInternalSelectedCells(newCells);
         }
     };
-    
+
     /* 현재 컨테이너 너비에 따라 보여줄 날짜/시간 수 */
     const [visibleDateCount, setVisibleDateCount] = useState(7);
     const [visibleTimeCount, setVisibleTimeCount] = useState(12);
@@ -244,7 +244,7 @@ function TimeTable(props) {
                                     return (
                                         <div
                                             key={cellKey}
-                                            className={`timetable-cell ${isSelected ? 'is-selected' : ''}`}
+                                            className={`timetable-cell ${isSelected ? (props.readOnly ? 'is-selected-readonly' : 'is_selected') : ''}`}
                                             onMouseDown={() => handleMouseDown(dateKey, timeIndex)}
                                             onMouseEnter={() => handleMouseEnter(dateKey, timeIndex)}
                                         />

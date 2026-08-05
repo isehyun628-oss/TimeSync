@@ -158,3 +158,12 @@ timetable-arrow:disabled {
 .timetable-cell.is-selected:hover {
     background-color: purple;
 }
+
+/* 오른쪽 캘린더 (보기 전용) 선택된 칸 */
+.timetable-cell.is-selected-readonly {
+    background-color: #e9d5ff;  /* 연보라 */
+}
+
+.timetable-cell.is-selected-readonly:hover {
+    background-color: #d8b4fe;
+}

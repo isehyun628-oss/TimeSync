@@ -131,6 +131,7 @@ function GroupSchedulePage() {
                             startTime={startTime}
                             endTime={endTime}
                             readOnly={true} /* 보기 전용 */
+                            selectedCells={mySelectedCells}
                         />
                     </div>
 
