@@ -25,6 +25,15 @@ function GroupSchedulePage() {
     /* 나중에 실제 데이터로 연결 예정 (현재는 하드코딩) */
     const isOwner = true;
 
+    /* 저장된 내 일정 선택 칸 */
+    const [mySelectedCells, setMySelectedCells] = useState({});
+
+    /* 수정 모드 */
+    const [editOpen, setEditOpen] = useState(false);
+
+    /* 수정 중인 임시 선택 칸 */
+    const [tempSelectedCells, setTempSelectedCells] = useState({});
+
     /* 그룹 생성 시 설정한 날짜 배열 (하드코딩) */
     const dates = [
         '2026-05-03', '2026-05-04', '2026-05-05',
@@ -74,8 +83,22 @@ function GroupSchedulePage() {
                     {/* 캘린더 상단: 제목 텍스트 + 수정 버튼 */}
                     <div className="calender-header">
                         <span>내 일정</span>
-                        {/* 수정 버튼: 누르면 캘린더 수정 가능 (기능 나중에 추가) */}
-                        <button>수정</button>
+                        {editOpen ? (
+                            /* 수정 모드일 때: 초기화 + 완료 버튼 */
+                            <div style={{display:'flex', gap:'8px'}}>
+                                <button onClick={() => { setTempSelectedCells({}); }}>초기화</button>
+                                <button onClick={() => {
+                                    setMySelectedCells({...tempSelectedCells});
+                                    setEditOpen(false);
+                                }}>완료</button>
+                            </div>
+                        ) : (
+                            /* 일반 모드일 때: 수정 버튼 */
+                            <button onClick={() => {
+                                setTempSelectedCells({...mySelectedCells});
+                                setEditOpen(true);
+                            }}>수정</button>
+                        )}
                     </div>
 
                     {/* 캘린더 본체: 타임블럭이 들어갈 영역 (나중에 추가) */}
@@ -84,8 +107,9 @@ function GroupSchedulePage() {
                             dates={dates}
                             startTime={startTime}
                             endTime={endTime}
-                            readOnly={true} /* 보기 전용 */
-                            selectedCells={mySelectedCells} /* 저장된 선택 칸 */
+                            readOnly={!editOpen} /* 보기 전용 */
+                            selectedCells={editOpen ? tempSelectedCells : mySelectedCells} /* 저장된 선택 칸 */
+                            onSelectedCellsChange={setTempSelectedCells}
                         />
                     </div>
                 </div>

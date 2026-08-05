@@ -30,9 +30,25 @@ function TimeTable(props) {
     /* 드래그 관련 상태 */
     const [isDragging, setIsDragging] = useState(false);    // 드래그 중인지
     const [dragStart, setDragStart] = useState(null);       // 드래그 시작 칸
-    const [selectedCells, setSelectedCells] = useState({}); // 선택된 칸들
+    const [internalselectedCells, setInternalSelectedCells] = useState({}); // 선택된 칸들
     const [isErasing, setIsErasing] = useState(false);      // 지우기 모드
 
+    const selectedCells = props.selectedCells !== undefined
+        ? props.selectedCells
+        : internalselectedCells;
+
+    const setSelectedCells = (newCells) => {
+        if (props.onSelectedCellsChange) {
+            if (typeof newCells === 'function') {
+                props.onSelectedCellsChange(newCells(selectedCells));
+            } else {
+                props.onSelectedCellsChange(newCells);
+            }
+        } else {
+            setInternalSelectedCells(newCells);
+        }
+    };
+    
     /* 현재 컨테이너 너비에 따라 보여줄 날짜/시간 수 */
     const [visibleDateCount, setVisibleDateCount] = useState(7);
     const [visibleTimeCount, setVisibleTimeCount] = useState(12);
