@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import ParticipantPopup from '../components/ParticipantPopup';
 import SettingPopup from '../components/SettingPopup';
 import TimeTable from '../components/TimeTable';
+import CellPopup from '../components/CellPopup';
 
 /* GroupSchedulePage.css 파일을 불러와서 디자인 적용 */
 import './GroupSchedulePage.css';
@@ -34,6 +35,9 @@ function GroupSchedulePage() {
     /* 수정 중인 임시 선택 칸 */
     const [tempSelectedCells, setTempSelectedCells] = useState({});
 
+    /* 칸 팝업 상태 */
+    const [cellPopup, setCellPopup] = useState(null);
+
     /* 그룹 생성 시 설정한 날짜 배열 (하드코딩) */
     const dates = [
         '2026-05-03', '2026-05-04', '2026-05-05',
@@ -44,6 +48,39 @@ function GroupSchedulePage() {
     /* 그룹 생성 시 설정한 시간 (하드코딩) */
     const startTime = 16;   /* 08:00 */
     const endTime = 40;     /* 20:00 */
+
+    /* 하드코딩된 참가자 데이터 (나중에 백엔드로 교체) */
+    const participants = [
+        { name: '참가자1', selectedCells: { '2026-05-03-16': true, '2026-05-03-17': true } },
+        { name: '참가자2', selectedCells: { '2026-05-03-16': true } },
+        { name: '참가자3', selectedCells: { '2026-05-04-16': true } },
+        { name: '참가자4', selectedCells: {} },
+    ];
+
+    /* 칸 클릭시 가능/불가 사람 계산 */
+    const handleCellClick = (dateKey, timeIndex) => {
+        const cellKey = `${dateKey}-${timeIndex}`;
+        /* 이미 열린 팝업 칸을 다시 누르면 닫힘 */
+        if (cellPopup && cellPopup.cellKey === cellKey) {
+            setCellPopup(null);
+            return;
+        }
+        setCellPopup({ cellKey, dateKey, timeIndex });
+    };
+
+    /* 현재 팝업 칸의 가능/불가 사람 목록 계산 */
+    const getCellParticipants = (cellKey) => {
+        const available = [];
+        const unavailable = [];
+        participants.forEach(p => {
+            if (p.selectedCells[cellKey]) {
+                available.push(p.name);
+            } else {
+                unavailable.push(p.name);
+            }
+        });
+        return { available, unavailable };
+    };
 
     return (
         /* 페이지 전체 컨테이너 */
@@ -63,8 +100,9 @@ function GroupSchedulePage() {
             {settingOpen && (
                 <div style={{
                     position: 'fixed',  /* 화면 기준으로 위치 고정 */
-                    top: '60px',        /* 헤더 바로 아래 */
-                    right: '10px',      /* 오른쪽 끝 */
+                    top: '50%',        /* 헤더 바로 아래 */
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
                     zIndex: 100         /* 다른 요소 위에 표시 */
                 }}>
                     <SettingPopup
@@ -115,7 +153,7 @@ function GroupSchedulePage() {
                 </div>
 
                 {/* 오른쪽: 전체 캘린더 */}
-                <div className="calender-wrapper">
+                <div className="calender-wrapper" style={{ position: 'relative' }}>
 
                     {/* 캘린더 상단: 제목 텍스트 + 참가자 보기 버튼 */}
                     <div className="calender-header">
@@ -132,9 +170,30 @@ function GroupSchedulePage() {
                             endTime={endTime}
                             readOnly={true} /* 보기 전용 */
                             selectedCells={mySelectedCells}
+                            onCellClick={handleCellClick}
                         />
                     </div>
 
+                    {/* 칸 클릭 팝업 */}
+                    {cellPopup && (() => {
+                        const { available, unavailable } = getCellParticipants(cellPopup.cellKey);
+                        return (
+                            <div style={{
+                                position: 'absolute',
+                                top: '50px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                zIndex: 100
+                            }}>
+                                <CellPopup
+                                    available={available}
+                                    unavailable={unavailable}
+                                    onClose={() => { setCellPopup(null); }}
+                                />
+                            </div>
+                        );
+                    })()}
+                    
                 </div>
 
                 {/* participantOpen이 true일 때만 ParticipantPopup 표시 */}

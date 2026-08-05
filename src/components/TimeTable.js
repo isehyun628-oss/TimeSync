@@ -133,7 +133,10 @@ function TimeTable(props) {
 
     /* 드래그 시작: 마우스 누를 때 */
     const handleMouseDown = (dateKey, timeIndex) => {
-        if (props.readOnly) return;     /* 보기 전용이면 아무것도 안 함 */
+        if (props.readOnly) {   /* 보기 전용 */
+            if (props.onCellClick) props.onCellClick(dateKey, timeIndex);
+            return;
+        }
         const cellKey = `${dateKey}-${timeIndex}`;
         const isSelected = !!selectedCells[cellKey];
         setIsErasing(isSelected);   /* 이미 선택된 칸이면 지우기 모드 */
@@ -244,7 +247,7 @@ function TimeTable(props) {
                                     return (
                                         <div
                                             key={cellKey}
-                                            className={`timetable-cell ${isSelected ? (props.readOnly ? 'is-selected-readonly' : 'is_selected') : ''}`}
+                                            className={`timetable-cell ${isSelected ? (props.readOnly ? 'is-selected-readonly' : 'is-selected') : ''}`}
                                             onMouseDown={() => handleMouseDown(dateKey, timeIndex)}
                                             onMouseEnter={() => handleMouseEnter(dateKey, timeIndex)}
                                         />
